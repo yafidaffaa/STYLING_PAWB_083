@@ -63,28 +63,16 @@
     <div class="container">
         <h2 class="text-center mb-4">Edit Todo</h2>
         <div class="card">
-            <form action="<%= url + 'contact/update/' + contact.id %>" method="POST">
+            <form action="<%= url + 'contact/update/' + todos.id %>" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" value="<%= contact.name %>" required>
+                    <input type="text" name="name" id="name" class="form-control" value="<%= todos.name %>" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" value="<%= contact.email %>"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" name="phone" id="phone" class="form-control" value="<%= contact.phone %>"
-                        required>
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea name="address" id="address" class="form-control" rows="3"
-                        required><%= contact.address %></textarea>
+                    <label for="todo"></label>
+                    <textarea type="text" name="todo" id="todo" class="form-control" value="<%= todos.todo %>"
+                        required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Update</button>

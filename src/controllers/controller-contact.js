@@ -11,7 +11,7 @@ module.exports = {
     getContact(req, res) {
         pool.getConnection(function (err, connection) {
             if (err) throw err;
-            connection.query('SELECT * FROM contacts;', function (error, results) {
+            connection.query('SELECT * FROM todos;', function (error, results) {
                 if (error) throw error;
 
                 // Check if results contains any data
@@ -19,13 +19,13 @@ module.exports = {
                 if (results.length > 0) {
                     res.render('contact', {
                         url: 'http://localhost:5050/',
-                        contacts: results,
+                        todos: results,
                         userName: req.session.username // Pass the contacts data to the view
                     });
                 } else {
                     res.render('contact', {
                         url: 'http://localhost:5050/',
-                        contacts: [],
+                        todos: [],
                         userName: req.session.username // Pass an empty array if no data
                     });
                 }
@@ -39,14 +39,14 @@ module.exports = {
         });
     },
     saveContact(req, res) {
-        let { name, email, phone, address } = req.body;
-        console.log(name, email, phone, address);
-        if (name && email && phone && address) {
+        let { name, todo } = req.body;
+        console.log(name, todo);
+        if (name && todo) {
             pool.getConnection(function (err, connection) {
                 if (err) throw err;
                 connection.query(
-                    `INSERT INTO contacts (name, email, phone, address) VALUES (?, ?, ?, ?);`,
-                    [name, email, phone, address],
+                    `INSERT INTO todos (name, todo) VALUES (?, ?);`,
+                    [name, todo],
                     function (error, results) {
                         if (error) {
                             console.error(error);
@@ -69,12 +69,12 @@ module.exports = {
         const { id } = req.params;
         pool.getConnection(function (err, connection) {
             if (err) throw err;
-            connection.query('SELECT * FROM contacts WHERE id = ?', [id], function (error, results) {
+            connection.query('SELECT * FROM todos WHERE id = ?', [id], function (error, results) {
                 if (error) throw error;
                 if (results.length > 0) {
                     res.render('editContact', {
                         url: 'http://localhost:5050/',
-                        contact: results[0]
+                        todos: results[0]
                     });
                 } else {
                     res.redirect('/contact');
@@ -85,12 +85,12 @@ module.exports = {
     },
     updateContact(req, res) {
         const { id } = req.params;
-        const { name, email, phone, address } = req.body;
+        const { name, todo } = req.body;
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
-                'UPDATE contacts SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?',
-                [name, email, phone, address, id],
+                'UPDATE todos SET name = ?, todo = ? WHERE id = ?',
+                [name, todo, id],
                 function (error, results) {
                     if (error) throw error;
                     res.redirect('/contact');
@@ -103,7 +103,7 @@ module.exports = {
         const { id } = req.params;
         pool.getConnection(function (err, connection) {
             if (err) throw err;
-            connection.query('DELETE FROM contacts WHERE id = ?', [id], function (error, results) {
+            connection.query('DELETE FROM todos WHERE id = ?', [id], function (error, results) {
                 if (error) throw error;
                 res.redirect('/contact');
             });
