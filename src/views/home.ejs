@@ -17,7 +17,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
 </head>
 
 <body>
@@ -49,26 +48,34 @@
             </ul>
         </div>
     </nav>
-    <section class="mt-4 pb-5">
+
+    <section class="mt-5 pb-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h3>Hi, <b>
+                        <div class="card-header text-center">
+                            <h3>Selamat Datang, <b>
                                     <%= userName %>
-                                </b></h3>
+                                </b>!</h3>
+                            <p class="text-muted">Kelola waktu dan tugas Anda dengan efisien.</p>
                         </div>
                         <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                                <p>Selamat Datang</p>
-                                <footer class="blockquote-footer">Muhamad Adri</footer>
-                            </blockquote>
+                            <h5 class="text-center mb-4">Tips untuk Mengelola Todo Anda</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">1. Prioritaskan tugas yang paling penting setiap hari.</li>
+                                <li class="list-group-item">2. Gunakan metode <i>time-blocking</i> untuk menjadwalkan
+                                    pekerjaan Anda.</li>
+                                <li class="list-group-item">3. Hindari menunda-nunda tugas yang sederhana.</li>
+                                <li class="list-group-item">4. Evaluasi tugas Anda di akhir hari untuk perbaikan ke
+                                    depannya.</li>
+                                <li class="list-group-item">5. Jangan lupa untuk memberikan penghargaan kepada diri
+                                    sendiri setelah menyelesaikan tugas besar.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -81,7 +88,7 @@
         html {
             font-family: Quicksand, sans-serif !important;
             height: 100%;
-            padding-top: 2rem;
+            padding-top: 4rem;
         }
 
         footer {
@@ -92,6 +99,14 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+        }
+
+        .card-header {
+            background-color: #f8f9fa;
+        }
+
+        .list-group-item {
+            font-size: 1rem;
         }
     </style>
 </body>
